@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: guide-events-service
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+guide-events:
+  idempotency:
+    retention-minutes: ${IDEMPOTENCY_RETENTION_MINUTES:60}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+logging:
+  pattern:
+    console: "%d{ISO8601} %-5level [%thread] %logger{36} - %msg%n"
